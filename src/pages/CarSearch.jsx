@@ -36,16 +36,10 @@ export default function CarSearch() {
   }, []);
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'row' }}
-    >
-      <div>
-        <form
-          style={{ display: 'flex', flexDirection: 'row' }}
-        >
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
+    <div className='container'>
+      <div className='sidebar'>
+        <form className='search-form'>
+          <div className='input-group'>
             <label htmlFor='startDate'>Start Date</label>
             <input
               type='date'
@@ -54,9 +48,7 @@ export default function CarSearch() {
               onChange={handleStartDateInput}
               value={bookingState.startDate} />
           </div>
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
+          <div className='input-group'>
             <label htmlFor='endDate'>End Date</label>
             <input
               type='date'
@@ -67,30 +59,46 @@ export default function CarSearch() {
           </div>
           <button
             type={'submit'}
-            onClick={async () => {
-              await 'hello';
+            onClick={(event) => {
+              event.preventDefault();
+              return 'hello';
             }}
           >Search</button>
         </form>
-        <h3>Available Cars</h3>
-        {carState.cars.length === 0 && <div>No cars matching your query were found</div>}
-        {carState.cars.length > 0 && carState.cars.map((car) => (
+        <h3 className='section-head'>Available Cars</h3>
+        <div className='column'>
+          {carState.cars.length === 0 && <div>No cars matching your query were found</div>}
+          {carState.cars.length > 0 && carState.cars.map((car) => (
             <NavLink
               to={`${car.id}`}
               key={car.id}
-              style={{ display: 'flex', flexDirection: 'row' }}
-            >
+              className='item' >
               <img src={`${car.image}`} className='car_thumb'></img>
-              <div
-                style={{ marginLeft: '1rem' }}
-              >
-                <div><strong>{car.manufacturer}</strong> {car.model}</div>
-                <div>{car.rate}</div>
-                <div>{car.seats}</div>
+              <div>
+                <div className='item-title'>
+                  <strong>{car.manufacturer} </strong>
+                  {car.model}
+                </div>
+                <div className='property'>
+                  <div className='prop-label'>
+                    Rate:
+                  </div>
+                  <div className='prop-desc'>
+                    ${car.rate}/week
+                  </div>
+                </div>
+                <div className='property'>
+                  <div className='prop-label'>
+                    Seats:
+                  </div>
+                  <div className='prop-desc'>
+                    {car.seats}
+                  </div>
+                </div>
               </div>
             </NavLink>
-        ))
-          }
+          )) }
+        </div>
       </div>
       <div>
         <Outlet />

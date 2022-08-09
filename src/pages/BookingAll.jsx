@@ -43,24 +43,25 @@ export default function BookingAll() {
             }}
           >Search</button>
         </form>
-        <h3>Your Bookings</h3>
-        {bookingState.bookings.length === 0 && <div>No bookings were found</div>}
-        {bookingState.bookings.length > 0 && bookingState.bookings.map((booking) => (
-          <NavLink
-            to={`/bookings/${booking.id}`}
-            key={booking.id}
-            style={{ display: 'flex', flexDirection: 'row' }}
-          >
-            <div
-              style={{ marginLeft: '1rem' }}
+        <h3 className='section-head'>Your Bookings</h3>
+        <div className='column'>
+          {bookingState.bookings.length === 0 && <div>Enter an email address to search.</div>}
+          {bookingState.bookings.length > 0 && bookingState.bookings.map((booking) => (
+            <NavLink
+              to={`/bookings/${booking.id}`}
+              key={booking.id}
+              className='item'
             >
-              <div><strong>#{booking.id}</strong></div>
-              <div>{booking.startDate}</div>
-              <div>{booking.endDate}</div>
-            </div>
-          </NavLink>
-        ))
-          }
+              <div
+                style={{ marginLeft: '1rem' }}
+              >
+                <div><strong>#{booking.id}</strong></div>
+                <div>{booking.startDate}</div>
+                <div>{booking.endDate}</div>
+              </div>
+            </NavLink>
+          )) }
+        </div>
       </div>
       <div>
         <Outlet />

@@ -10,9 +10,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+button {
+  width: 6rem;
+  min-height: 3rem;
+  background: none;
+  border: solid black 1px;
+  border-radius: 7px;
+}
+
+button:hover {
+  background-color: #ebebeb;
+  border: solid #000000 1px;
+  border-radius: 7px;
+}
+
+hr {
+  border-top: 1px;
+  margin-bottom: 3rem;
+}
+
 .app {
   max-width: 1000px;
   margin: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -35,50 +64,101 @@ code {
 }
 
 .header nav a {
-  border: solid black 2px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 5px;
-}
-
-hr {
-  border-top: 1px;
-  margin-bottom: 2rem;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
+  border: solid black 1px;
+  border-radius: 4px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 7px;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-
-  min-width: 300px;
+  width: 25rem;
   margin-right: 2rem;
 }
 
 .search-form {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  border: solid black 1px;
+  border-radius: 7px;
+  padding: 7px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
+  min-width: 7rem;
+  margin-right: 7px;
+}
+
+.input-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.input-group input {
+  font-family: "IBM Plex Sans";
+  font-size: 1rem;
+  height: 2rem;
+  border: none;
+  border-bottom: solid black 1px;
+}
+
+.section-head {
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  height: 100px;
+  border: solid black 1px;
+  border-radius: 7px;
+  margin-bottom: 12px;
+}
+
+.property {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.prop-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 60px;
+}
+
+.description {
+  margin-bottom: 1rem;
+}
+
+.item-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .car_thumb {
   height: 100px;
   width: 100px;
+  border-radius: 7px 0px 0px 7px;
+  margin-right: 1rem;
 }
 
 .car_display {
-  height: 500px;
-  width: 500px;
-
-  margin-bottom: 2rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
 }

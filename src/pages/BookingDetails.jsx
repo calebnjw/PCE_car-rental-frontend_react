@@ -46,13 +46,50 @@ export default function BookingDetails() {
   return (
     <div>
       <img src={`${carDisplay.image}`} className='car_display'></img>
-      <div>
-        <div>{carDisplay.manufacturer} {carDisplay.model}</div>
-        <div>${carDisplay.rate}/week</div>
-        <div>{carDisplay.seats}</div>
-        <div>{carDisplay.vrm}</div>
-        <div>{carDisplay.fuel}</div>
-        <div>{carDisplay.manual ? 'Manual' : 'Auto'}</div>
+      <div className='description'>
+        <div className='item-title'>
+          {carDisplay.manufacturer} {carDisplay.model}
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Rate:
+          </div>
+          <div className='prop-desc'>
+            ${carDisplay.rate}/week
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Seats:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.seats}
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Fuel:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.fuel}
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Drive:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.manual ? 'Manual' : 'Auto'}
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            VRM:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.vrm}
+          </div>
+        </div>
       </div>
       <button
         onClick={(event) => {

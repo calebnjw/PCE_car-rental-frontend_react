@@ -30,14 +30,13 @@ function App() {
               </div>
             } />
             <Route path='cars' element={<CarSearch />} >
-              <Route index element={<div>Choose a car</div>} />
+              <Route index element={<div>Please choose a car.</div>} />
               <Route path=':carId' element={<CarDetails />} />
-              <Route path='*' element={<NotFound />} />
             </Route>
             <Route path='bookings' element={<BookingAll />} >
+              <Route index element={<div>Please select booking to view.</div>} />
               <Route path='confirm' element={<BookingConfirm />} />
               <Route path=':bookingId' element={<BookingDetails />} />
-              <Route path='*' element={<NotFound />} />
             </Route>
             <Route path='*' element={<NotFound />} />
           </Route>
