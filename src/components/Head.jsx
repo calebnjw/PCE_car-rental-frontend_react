@@ -7,18 +7,21 @@ import {
 
 export default function Head() {
   return (
-    <div>
-      <Link to={'/cars'}>
-        <h1>Car Rental</h1>
-      </Link>
-      <nav>
-        <NavLink to={'/cars'}>
-          Cars
-        </NavLink>
-        <NavLink to={'/bookings'}>
-          Bookings
-        </NavLink>
-      </nav>
+    <div className='app'>
+      <div className='header'>
+        <Link to={'/cars'}>
+          <h1>RENT-A-CAR</h1>
+        </Link>
+        <nav>
+          <NavLink to={'/cars'}>
+            Find Cars
+          </NavLink>
+          <NavLink to={'/bookings'}>
+            Bookings
+          </NavLink>
+        </nav>
+      </div>
+      <hr />
       <Outlet />
     </div>
   );

@@ -1,43 +1,39 @@
 import React, {
   useContext,
   useEffect,
-  useState,
 } from 'react';
 import {
   Outlet,
   NavLink,
 } from 'react-router-dom';
-import axios from 'axios';
 
 import { CarStateContext, BookingStateContext } from '../providers/context.jsx';
 import { getCars } from '../reducer/carReducer.js';
+import { setStartDate, setEndDate } from '../reducer/bookingReducer.js';
 
 export default function CarSearch() {
   const { carState, carDispatch } = useContext(CarStateContext);
   const { bookingState, bookingDispatch } = useContext(BookingStateContext);
 
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-
-  useEffect(() => {
-    (async () => carDispatch(await getCars()))();
-  }, []);
-
   const handleStartDateInput = (event) => {
     const newDate = event.target.value;
-    setStartDate(newDate);
-    if (endDate < newDate) {
-      setEndDate(newDate);
+    bookingDispatch(setStartDate(newDate));
+    if (bookingState.endDate < newDate) {
+      bookingDispatch(setEndDate(newDate));
     }
   };
 
   const handleEndDateInput = (event) => {
     const newDate = event.target.value;
-    setEndDate(newDate);
-    if (newDate < startDate) {
-      setStartDate(newDate);
+    bookingDispatch(setEndDate(newDate));
+    if (newDate < bookingState.startDate) {
+      bookingDispatch(setStartDate(newDate));
     }
   };
+
+  useEffect(() => {
+    (async () => carDispatch(await getCars()))();
+  }, []);
 
   return (
     <div
@@ -50,26 +46,31 @@ export default function CarSearch() {
           <div
             style={{ display: 'flex', flexDirection: 'column' }}
           >
-            <label htmlFor='StartDate'>Start Date</label>
+            <label htmlFor='startDate'>Start Date</label>
             <input
-              type={'date'}
-              id='StartDate'
-              name='StartDate'
+              type='date'
+              id='startDate'
+              name='startDate'
               onChange={handleStartDateInput}
-              value={startDate} />
+              value={bookingState.startDate} />
           </div>
           <div
             style={{ display: 'flex', flexDirection: 'column' }}
           >
-            <label htmlFor='EndDate'>End Date</label>
+            <label htmlFor='endDate'>End Date</label>
             <input
-              type={'date'}
-              id='EndDate'
-              name='EndDate'
+              type='date'
+              id='endDate'
+              name='endDate'
               onChange={handleEndDateInput}
-              value={endDate} />
+              value={bookingState.endDate} />
           </div>
-          <input type={'submit'} value={'Search'} />
+          <button
+            type={'submit'}
+            onClick={async () => {
+              await 'hello';
+            }}
+          >Search</button>
         </form>
         <h3>Available Cars</h3>
         {carState.cars.length === 0 && <div>No cars matching your query were found</div>}

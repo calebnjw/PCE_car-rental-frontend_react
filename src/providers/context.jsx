@@ -13,7 +13,7 @@ export default function GlobalContext({ children }) {
   const [bookingState, bookingDispatch] = useReducer(
     bookingReducer,
     {
-      bookings: [], bookingId: 1, startDate: '', endDate: '', email: '', firstName: '', lastName: '',
+      bookings: [], bookingId: 1, startDate: '', endDate: '', firstName: '', lastName: '', email: '',
     },
   );
 

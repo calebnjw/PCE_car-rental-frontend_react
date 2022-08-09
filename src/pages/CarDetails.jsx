@@ -4,28 +4,37 @@ import React, {
   useState,
 } from 'react';
 import {
-  Link,
+  useNavigate,
   useParams,
 } from 'react-router-dom';
-
-import { CarStateContext } from '../providers/context.jsx';
-import { setCarId } from '../reducer/carReducer.js';
+import axios from 'axios';
 
 export default function CarDetails() {
-  const { carState, carDispatch } = useContext(CarStateContext);
+  const navigate = useNavigate();
+
   const { carId } = useParams();
 
   const [carDisplay, setCarDisplay] = useState({});
 
+  const getCarDetails = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/cars/${carId}`);
+    if (!data) {
+      navigate('/404', { replace: true });
+    }
+    setCarDisplay(data);
+  };
+
   useEffect(() => {
-    setCarDisplay(carState.cars[carId]);
+    getCarDetails();
   }, [carId]);
 
   return (
     <div>
       <button
-        to={'/bookings/confirm'}
-        onClick={() => { carDispatch(setCarId(carId)); }}
+        onClick={(event) => {
+          event.preventDefault();
+          navigate('/bookings/confirm', { replace: true });
+        }}
       >
         Book Now
       </button>

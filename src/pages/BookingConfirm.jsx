@@ -3,20 +3,54 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import {
+  useNavigate,
+} from 'react-router-dom';
 import axios from 'axios';
 
 import { CarStateContext, BookingStateContext } from '../providers/context.jsx';
+import {
+  setStartDate, setEndDate, setFirstName, setLastName, setEmail, newBooking,
+} from '../reducer/bookingReducer.js';
 
 export default function BookingConfirm() {
+  const navigate = useNavigate();
+
   const { carState } = useContext(CarStateContext);
   const { bookingState, bookingDispatch } = useContext(BookingStateContext);
 
   const [carDisplay, setCarDisplay] = useState({});
-  const [carId, setCarId] = useState(1);
+
+  const handleStartDateInput = (event) => {
+    const newDate = event.target.value;
+    bookingDispatch(setStartDate(newDate));
+    if (bookingState.endDate < newDate) {
+      bookingDispatch(setEndDate(newDate));
+    }
+  };
+
+  const handleEndDateInput = (event) => {
+    const newDate = event.target.value;
+    bookingDispatch(setEndDate(newDate));
+    if (newDate < bookingState.startDate) {
+      bookingDispatch(setStartDate(newDate));
+    }
+  };
+
+  const handleFirstNameInput = (event) => {
+    bookingDispatch(setFirstName(event.target.value));
+  };
+
+  const handleLastNameInput = (event) => {
+    bookingDispatch(setLastName(event.target.value));
+  };
+
+  const handleEmailInput = (event) => {
+    bookingDispatch(setEmail(event.target.value));
+  };
 
   useEffect(() => {
-    setCarId(carState.carId);
-    setCarDisplay(carState.cars[carId]);
+    setCarDisplay(carState.cars[carState.carId]);
     console.log('CAR ID', carState.carId);
   }, [carState]);
 
@@ -32,23 +66,93 @@ export default function BookingConfirm() {
         <div>{carDisplay.manual ? 'Manual' : 'Auto'}</div>
       </div>
       <form
+        style={{ display: 'flex', flexDirection: 'column' }}
+      >
+        <div
           style={{ display: 'flex', flexDirection: 'row' }}
         >
           <div
             style={{ display: 'flex', flexDirection: 'column' }}
           >
             <label htmlFor='StartDate'>Start Date</label>
-            <input type={'date'} id='StartDate' name='StartDate' />
+            <input
+              type='date'
+              id='StartDate'
+              name='StartDate'
+              onChange={handleStartDateInput}
+              value={bookingState.startDate} />
           </div>
           <div
             style={{ display: 'flex', flexDirection: 'column' }}
           >
             <label htmlFor='EndDate'>End Date</label>
-            <input type={'date'} id='EndDate' placeholder='EndDate' />
+            <input
+              type='date'
+              id='EndDate'
+              name='EndDate'
+              onChange={handleEndDateInput}
+              value={bookingState.endDate} />
           </div>
-          <input type={'submit'} value={'Search'} />
-        </form>
-      <Link to={'/bookings/confirm'}>Book Now</Link>
+        </div>
+        <div
+          style={{ display: 'flex', flexDirection: 'row' }}
+        >
+          <div
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            <label htmlFor='firstName'>First Name</label>
+            <input
+              type='text'
+              id='firstName'
+              name='firstName'
+              onChange={handleFirstNameInput}
+              value={bookingState.firstName} />
+          </div>
+          <div
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            <label htmlFor='lastName'>Last Name</label>
+            <input
+              type='text'
+              id='lastName'
+              name='lastName'
+              onChange={handleLastNameInput}
+              value={bookingState.lastName} />
+          </div>
+        </div>
+        <div
+          style={{ display: 'flex', flexDirection: 'row' }}
+        >
+          <div
+            style={{ display: 'flex', flexDirection: 'column' }}
+          >
+            <label htmlFor='email'>Email</label>
+            <input
+              type='text'
+              id='email'
+              name='email'
+              onChange={handleEmailInput}
+              value={bookingState.email} />
+          </div>
+        </div>
+        <button
+          onClick={async (event) => {
+            event.preventDefault();
+            bookingDispatch(await newBooking({
+              carId: carState.carId,
+              startDate: bookingState.startDate,
+              endDate: bookingState.endDate,
+              firstName: bookingState.firstName,
+              lastName: bookingState.lastName,
+              email: bookingState.email,
+            }));
+            navigate('/bookings', { replace: true });
+          }
+        }
+        >
+          Book Now
+        </button>
+      </form>
     </div>
   );
 }

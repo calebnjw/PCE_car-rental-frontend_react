@@ -9,11 +9,11 @@ export default function carReducer(state, action) {
   const { type, payload } = action;
   switch (type) {
     case GET:
-      return { cars: [...payload.cars], carId: state.carId };
+      return { ...state, cars: [...payload.cars] };
     case SET:
-      return { cars: [...state.cars], carId: payload.carId };
+      return { ...state, carId: payload.carId };
     default:
-      return { cars: [...state.cars], carId: state.carId };
+      return { ...state };
   }
 }
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter,
   Link,
+  Navigate,
   Routes,
   Route,
 } from 'react-router-dom';
@@ -36,6 +37,7 @@ function App() {
             <Route path='bookings' element={<BookingAll />} >
               <Route path='confirm' element={<BookingConfirm />} />
               <Route path=':bookingId' element={<BookingDetails />} />
+              <Route path='*' element={<NotFound />} />
             </Route>
             <Route path='*' element={<NotFound />} />
           </Route>
