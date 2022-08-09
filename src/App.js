@@ -24,9 +24,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Head />} >
             <Route index element={
-              <div>
-                <Link to={'cars'} >Find A Car</Link>
-                <Link to={'bookings'} >Check Your Bookings</Link>
+              <div className='big-container'>
+                <Link to={'cars'} className='big-button'>Find A Car</Link>
+                <Link to={'bookings'} className='big-button'>Check Your Bookings</Link>
               </div>
             } />
             <Route path='cars' element={<CarSearch />} >
