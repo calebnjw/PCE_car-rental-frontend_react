@@ -50,7 +50,7 @@ export default function bookingReducer(state, action) {
         ...state, bookingId: 0,
       };
     default:
-      return { ...state };
+      return state;
   }
 }
 

@@ -13,7 +13,7 @@ export default function carReducer(state, action) {
     case SET:
       return { ...state, carId: payload.carId };
     default:
-      return { ...state };
+      return state;
   }
 }
 

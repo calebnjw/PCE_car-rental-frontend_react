@@ -62,8 +62,9 @@ export default function CarSearch() {
             onClick={(event) => {
               event.preventDefault();
               return 'hello';
-            }}
-          >Search</button>
+            }} >
+            Search
+          </button>
         </form>
         <h3 className='section-head'>Available Cars</h3>
         <div className='column'>

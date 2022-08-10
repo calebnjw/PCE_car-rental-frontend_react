@@ -34,6 +34,7 @@ hr {
 .app {
   max-width: 1000px;
   margin: auto;
+  margin-bottom: 5rem;
 }
 
 .container {
