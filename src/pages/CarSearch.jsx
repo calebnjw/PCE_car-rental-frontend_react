@@ -72,7 +72,7 @@ export default function CarSearch() {
             <NavLink
               to={`${car.id}`}
               key={car.id}
-              className='item' >
+              className={({ isActive }) => (isActive ? 'item active' : 'item')} >
               <img src={`${car.image}`} className='car_thumb'></img>
               <div>
                 <div className='item-title'>

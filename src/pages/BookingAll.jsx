@@ -1,20 +1,15 @@
 import React, {
   useContext,
-  useState,
 } from 'react';
 import {
   NavLink,
   Outlet,
-  useNavigate,
 } from 'react-router-dom';
 
-import { CarStateContext, BookingStateContext } from '../providers/context.jsx';
+import { BookingStateContext } from '../providers/context.jsx';
 import { setEmail, getBookings } from '../reducer/bookingReducer.js';
 
 export default function BookingAll() {
-  const navigate = useNavigate();
-
-  const { carState } = useContext(CarStateContext);
   const { bookingState, bookingDispatch } = useContext(BookingStateContext);
 
   const handleEmailInput = (event) => {
@@ -50,8 +45,7 @@ export default function BookingAll() {
             <NavLink
               to={`/bookings/${booking.id}`}
               key={booking.id}
-              className='item'
-            >
+              className={({ isActive }) => (isActive ? 'item active' : 'item')}>
               <div
                 style={{ marginLeft: '1rem' }}
               >

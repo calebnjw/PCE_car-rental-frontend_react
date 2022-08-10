@@ -6,7 +6,6 @@ import React, {
 import {
   useNavigate,
 } from 'react-router-dom';
-import axios from 'axios';
 
 import { CarStateContext, BookingStateContext } from '../providers/context.jsx';
 import {
@@ -57,23 +56,54 @@ export default function BookingConfirm() {
   return (
     <div>
       <img src={`${carDisplay.image}`} className='car_display'></img>
-      <div>
-        <div>{carDisplay.manufacturer} {carDisplay.model}</div>
-        <div>${carDisplay.rate}/week</div>
-        <div>{carDisplay.seats}</div>
-        <div>{carDisplay.vrm}</div>
-        <div>{carDisplay.fuel}</div>
-        <div>{carDisplay.manual ? 'Manual' : 'Auto'}</div>
+      <div className='description'>
+        <div className='item-title'>
+          {carDisplay.manufacturer} {carDisplay.model}
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Rate:
+          </div>
+          <div className='prop-desc'>
+            ${carDisplay.rate}/week
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Seats:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.seats}
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Fuel:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.fuel}
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            Drive:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.manual ? 'Manual' : 'Auto'}
+          </div>
+        </div>
+        <div className='property'>
+          <div className='prop-label'>
+            VRM:
+          </div>
+          <div className='prop-desc'>
+            {carDisplay.vrm}
+          </div>
+        </div>
       </div>
-      <form
-        style={{ display: 'flex', flexDirection: 'column' }}
-      >
-        <div
-          style={{ display: 'flex', flexDirection: 'row' }}
-        >
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
+      <form className='input-form'>
+        <div className='row'>
+          <div className='input-group'>
             <label htmlFor='StartDate'>Start Date</label>
             <input
               type='date'
@@ -82,9 +112,7 @@ export default function BookingConfirm() {
               onChange={handleStartDateInput}
               value={bookingState.startDate} />
           </div>
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
+          <div className='input-group'>
             <label htmlFor='EndDate'>End Date</label>
             <input
               type='date'
@@ -94,12 +122,8 @@ export default function BookingConfirm() {
               value={bookingState.endDate} />
           </div>
         </div>
-        <div
-          style={{ display: 'flex', flexDirection: 'row' }}
-        >
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
+        <div className='row' >
+          <div className='input-group'>
             <label htmlFor='firstName'>First Name</label>
             <input
               type='text'
@@ -108,9 +132,7 @@ export default function BookingConfirm() {
               onChange={handleFirstNameInput}
               value={bookingState.firstName} />
           </div>
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
+          <div className='input-group'>
             <label htmlFor='lastName'>Last Name</label>
             <input
               type='text'
@@ -120,12 +142,8 @@ export default function BookingConfirm() {
               value={bookingState.lastName} />
           </div>
         </div>
-        <div
-          style={{ display: 'flex', flexDirection: 'row' }}
-        >
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}
-          >
+        <div className='row mb-1' >
+          <div className='input-group'>
             <label htmlFor='email'>Email</label>
             <input
               type='text'
@@ -146,6 +164,11 @@ export default function BookingConfirm() {
               lastName: bookingState.lastName,
               email: bookingState.email,
             }));
+            bookingDispatch(setStartDate(''));
+            bookingDispatch(setEndDate(''));
+            bookingDispatch(setFirstName(''));
+            bookingDispatch(setLastName(''));
+            bookingDispatch(setEmail(''));
             navigate('/bookings', { replace: true });
           }
         }

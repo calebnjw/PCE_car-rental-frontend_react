@@ -27,12 +27,21 @@ hr {
   margin-bottom: 3rem;
 }
 
+.active {
+  background-color: #cef0ff;
+}
+
 .app {
   max-width: 1000px;
   margin: auto;
 }
 
 .container {
+  display: flex;
+  flex-direction: row;
+}
+
+.row {
   display: flex;
   flex-direction: row;
 }
@@ -85,6 +94,18 @@ hr {
   border: solid black 1px;
   border-radius: 7px;
   padding: 7px;
+  margin-bottom: 1rem;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: space-between;
+  border: solid black 1px;
+  border-radius: 7px;
+  padding: 7px;
 }
 
 .input-group {
@@ -110,6 +131,7 @@ hr {
 
 .section-head {
   text-transform: uppercase;
+  margin-top: 0px;
   margin-bottom: 7px;
 }
 
@@ -185,4 +207,8 @@ hr {
 
 .big-button:hover {
   background-color: #ebebeb;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
 }
