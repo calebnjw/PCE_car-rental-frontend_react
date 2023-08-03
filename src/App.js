@@ -5,6 +5,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import { Grid } from '@carbon/react';
 
 import GlobalContext from './providers/context.jsx';
 
@@ -21,24 +22,26 @@ function App() {
     <GlobalContext>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Head />} >
-            <Route index element={
-              <div className='big-container'>
-                <Link to={'cars'} className='big-button'>Find A Car</Link>
-                <Link to={'bookings'} className='big-button'>Check Your Bookings</Link>
-              </div>
-            } />
-            <Route path='cars' element={<CarSearch />} >
-              <Route index element={<div>Please choose a car.</div>} />
-              <Route path=':carId' element={<CarDetails />} />
+          <Grid className="app" fullWidth >
+            <Route path='/' element={<Head />} >
+              <Route index element={
+                <div className='big-container'>
+                  <Link to={'cars'} className='big-button'>Find A Car</Link>
+                  <Link to={'bookings'} className='big-button'>Check Your Bookings</Link>
+                </div>
+              } />
+              <Route path='cars' element={<CarSearch />} >
+                <Route index element={<div>Please choose a car.</div>} />
+                <Route path=':carId' element={<CarDetails />} />
+              </Route>
+              <Route path='bookings' element={<BookingAll />} >
+                <Route index element={<div>Please select booking to view.</div>} />
+                <Route path='confirm' element={<BookingConfirm />} />
+                <Route path=':bookingId' element={<BookingDetails />} />
+              </Route>
+              <Route path='*' element={<NotFound />} />
             </Route>
-            <Route path='bookings' element={<BookingAll />} >
-              <Route index element={<div>Please select booking to view.</div>} />
-              <Route path='confirm' element={<BookingConfirm />} />
-              <Route path=':bookingId' element={<BookingDetails />} />
-            </Route>
-            <Route path='*' element={<NotFound />} />
-          </Route>
+          </Grid>
         </Routes>
       </BrowserRouter>
     </GlobalContext>

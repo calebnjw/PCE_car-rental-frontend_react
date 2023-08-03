@@ -169,7 +169,7 @@ export default function BookingConfirm() {
             bookingDispatch(setFirstName(''));
             bookingDispatch(setLastName(''));
             bookingDispatch(setEmail(''));
-            navigate('/bookings', { replace: true });
+            navigate('/bookings');
           }
         }
         >

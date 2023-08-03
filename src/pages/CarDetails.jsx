@@ -78,7 +78,7 @@ export default function CarDetails() {
       <button
         onClick={(event) => {
           event.preventDefault();
-          navigate('/bookings/confirm', { replace: true });
+          navigate('/bookings/confirm');
         }}
       >
         Book Now

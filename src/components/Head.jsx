@@ -4,10 +4,11 @@ import {
   Outlet,
   NavLink,
 } from 'react-router-dom';
+import { Column } from '@carbon/react';
 
 export default function Head() {
   return (
-    <div className='app'>
+    <Column sm={16}>
       <div className='header'>
         <Link to={'/cars'}>
           <h1>RENT-A-CAR</h1>
@@ -23,6 +24,6 @@ export default function Head() {
       </div>
       <hr />
       <Outlet />
-    </div>
+    </Column>
   );
 }

@@ -95,7 +95,7 @@ export default function BookingDetails() {
         onClick={(event) => {
           event.preventDefault();
           bookingDispatch(deleteBooking(bookingId));
-          navigate('/bookings', { replace: true });
+          navigate('/bookings');
         }}
       >
         Delete Booking
